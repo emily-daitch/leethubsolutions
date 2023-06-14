@@ -32,18 +32,16 @@ function readLine() {
 function timeConversion(s) {
     // Write your code here
     const isPM = (s[8] === 'P');
-    const isTwelveFlat = (s.startsWith("12:00:00"));
+    const isTwelve = (s.startsWith("12"));
     
-    if(isTwelveFlat) {
-        return isPM ? "12:00:00" : "00:00:00";
+    if(isTwelve) {
+        return isPM ? "12" + s.slice(2,8) : "00" + s.slice(2,8);
     }
     
-    if(!isPM) {
-        return s.slice(0,8);
-    }
-    else {
-        return (Number(s.slice(0,2)) + 12).toString() + s.slice(2,8);
-    }
+    let offset = isPM ? 12 : 0;
+    let hour = parseInt(s.slice(0, 2));
+    hour = (hour + offset) % 24;
+    return hour.toString().padStart(2, '0') + s.slice(2, 8);
 }
 
 function main() {
