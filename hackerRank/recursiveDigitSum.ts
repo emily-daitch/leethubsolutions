@@ -32,33 +32,35 @@ function readLine(): string {
  *  2. INTEGER k
  */
 
-function superDigit(n: string, k: number): number {
-    // Write your code here
-    if(k > 1){
-        let startString = '';
-        // for(let i = 0; i < k; i++){
-        //     startString += n;
-        // };
-        startString = n.repeat(k);
-        return superDigit(startString, 1);
-    } else {
-        if(n.length === 1){
-            return parseInt(n);
-        }
-        
-        // let charArr: string[] = [];
-        // let sum = 0;
-        // for(let j = 0; j < n.length; j++){
-        //     charArr.push(n.charAt(j));
-        //     sum += Number(n.charAt(j));
-        // };
-        
-        const charArr: string[] = n.split('');
-        const sum = charArr.reduce((acc, digit) => acc + parseInt(digit), 0);
-
-        return superDigit(String(sum), 1);
-        
+/*
+function rec(n){
+    if(n.length==1) return parseInt(n);
+    let sum=0;
+    for(let i=0;i<n.length;i++){
+        sum+=parseInt(n[i]);
     }
+    return rec(sum.toString())
+}
+function superDigit(n, k) {
+    let val=rec(n);
+    return rec((val*k).toString())
+}
+*/
+
+function recurse(str: string): number {
+    if(str.length === 1){
+        return parseInt(str);
+    }
+        
+    const charArr: string[] = str.split('');
+    const sum = charArr.reduce((acc, digit) => acc + parseInt(digit), 0);
+
+    return superDigit(String(sum), 1);
+}
+
+function superDigit(n: string, k: number): number {
+    let val=recurse(n);
+    return recurse((val*k).toString())
 }
 
 function main() {
