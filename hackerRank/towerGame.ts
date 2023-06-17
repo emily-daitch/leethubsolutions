@@ -93,6 +93,7 @@ function readLine(): string {
 // Traditional loops replaced with array iteration and .find (I like this in the right scenario, definitely tougher to pull off 
 // on the fly in a coding interview situation (at least for now)
 // Removal of the "found" variable - using result nullishness from .find (love this)
+/*
 function towerBreakers(n: number, m: number): number {
   let towers: number[] = new Array(n).fill(m); // create towers
   let player: number = 1; // start with player 1
@@ -132,6 +133,15 @@ function towerBreakers(n: number, m: number): number {
   }
 
   return player;// === 1 ? 2 : 1; // return last player to make a move successfully
+}
+*/
+
+// As far as I can tell, the way to achieve 100% success without timing out requires recognizing the following special cases
+function towerBreakers(n: number, m: number): number {
+    // Write your code here
+    // height 1 or even number of towers, player 2 always wins
+    // otherwise, player 1 wins
+    return (m == 1) || ((n % 2) == 0) ? 2 : 1;
 }
 
 function main() {
