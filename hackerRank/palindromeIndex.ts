@@ -8,8 +8,8 @@ function palindromeIndex(s: string): number {
     //         return reverseString(str.substr(1)) + str.charAt(0);
     // }
     function reverseString(str: string): string {
-        var newString = "";
-        for (var i = str.length - 1; i >= 0; i--) {
+        let newString = "";
+        for (let i = str.length - 1; i >= 0; i--) {
             newString += str[i];
         }
         return newString;
